@@ -1,0 +1,1165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sniper Desk — GBP/USD · XAU/USD · AUD/USD</title>
+<meta name="description" content="ICT/SMC sniper trading assistant" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='22' y1='12' x2='18' y2='12'/%3E%3Cline x1='6' y1='12' x2='2' y2='12'/%3E%3Cline x1='12' y1='6' x2='12' y2='2'/%3E%3Cline x1='12' y1='22' x2='12' y2='18'/%3E%3C/svg%3E" />
+<style>
+:root {
+  --bg: #09090b;
+  --card: rgba(24,24,27,0.6);
+  --border: #27272a;
+  --text: #f4f4f5;
+  --muted: #a1a1aa;
+  --dim: #71717a;
+  --emerald: #10b981;
+  --emerald-light: #34d399;
+  --rose: #f43f5e;
+  --rose-light: #fb7185;
+  --amber: #f59e0b;
+  --amber-light: #fbbf24;
+  --sky: #0ea5e9;
+  --sky-light: #38bdf8;
+  --fuchsia: #d946ef;
+  --fuchsia-light: #e879f9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; line-height: 1.5; min-height: 100vh; }
+button { cursor: pointer; font-family: inherit; font-size: inherit; }
+input, select, textarea { font-family: inherit; font-size: inherit; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+.header { border-bottom: 1px solid var(--border); background: rgba(24,24,27,0.5); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
+.header-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; padding: 0.75rem 0; }
+.brand { display: flex; align-items: center; gap: 0.75rem; }
+.brand-logo { width: 2.25rem; height: 2.25rem; border-radius: 0.5rem; background: linear-gradient(135deg, #10b981, #0ea5e9); display: flex; align-items: center; justify-content: center; }
+.brand-name { font-weight: 600; letter-spacing: -0.025em; }
+.brand-tag { font-size: 0.75rem; color: var(--dim); }
+
+.clock-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.clock-text { text-align: right; }
+.clock-date { font-size: 0.75rem; color: var(--dim); }
+.clock-time { font-size: 1.125rem; font-family: ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+.session-badge { padding: 0.375rem 0.75rem; border-radius: 0.375rem; border: 1px solid; font-size: 0.75rem; font-weight: 500; display: flex; align-items: center; gap: 0.375rem; }
+.session-badge .dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: currentColor; animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.tone-prime { background: rgba(217,70,239,0.15); color: var(--fuchsia-light); border-color: rgba(217,70,239,0.3); }
+.tone-high { background: rgba(16,185,129,0.15); color: var(--emerald-light); border-color: rgba(16,185,129,0.3); }
+.tone-mid { background: rgba(245,158,11,0.15); color: var(--amber-light); border-color: rgba(245,158,11,0.3); }
+.tone-low { background: rgba(113,113,122,0.15); color: var(--muted); border-color: var(--border); }
+
+.fund-chip { padding: 0.375rem 0.5rem; border-radius: 0.375rem; border: 1px solid var(--border); background: rgba(24,24,27,0.6); display: flex; align-items: center; gap: 0.375rem; }
+.fund-chip:hover { border-color: var(--dim); }
+.fund-tag { padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.75rem; font-family: ui-monospace, monospace; font-weight: 700; border: 1px solid; }
+.fund-long { background: rgba(16,185,129,0.2); color: var(--emerald-light); border-color: rgba(16,185,129,0.4); }
+.fund-short { background: rgba(244,63,94,0.2); color: var(--rose-light); border-color: rgba(244,63,94,0.4); }
+.fund-neutral { background: rgba(113,113,122,0.3); color: var(--text); border-color: var(--dim); }
+
+.tabs { display: flex; gap: 0.25rem; padding-bottom: 0.5rem; overflow-x: auto; }
+.tab { display: flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; white-space: nowrap; border: none; background: transparent; color: var(--muted); transition: all 0.15s; }
+.tab:hover { color: var(--text); background: var(--border); }
+.tab.active { background: var(--text); color: var(--bg); font-weight: 500; }
+.tab svg { width: 1rem; height: 1rem; }
+
+.main { padding: 1.5rem 0; }
+.section { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem; }
+.card.p-5 { padding: 1.25rem; }
+.card.p-4 { padding: 1rem; }
+.card-emerald { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.3); }
+.card-fuchsia { background: rgba(217,70,239,0.05); border-color: rgba(217,70,239,0.3); }
+.card-rose { background: rgba(244,63,94,0.1); border-color: rgba(244,63,94,0.3); }
+.card-sky { background: rgba(14,165,233,0.05); border-color: rgba(14,165,233,0.3); }
+.card-amber { background: rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.3); }
+
+h2 { font-size: 1.25rem; font-weight: 600; }
+.muted { color: var(--muted); font-size: 0.875rem; }
+.dim { color: var(--dim); font-size: 0.75rem; }
+.label { font-size: 0.75rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.05em; }
+
+.btn { padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 500; font-size: 0.875rem; border: none; transition: all 0.15s; display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn-emerald { background: var(--emerald); color: var(--bg); }
+.btn-emerald:hover { background: var(--emerald-light); }
+.btn-sky { background: var(--sky); color: var(--bg); }
+.btn-sky:hover { background: var(--sky-light); }
+.btn-fuchsia { background: var(--fuchsia); color: var(--bg); }
+.btn-fuchsia:hover { background: var(--fuchsia-light); }
+.btn-zinc { background: var(--border); color: var(--text); }
+.btn-zinc:hover { background: var(--dim); }
+
+.grid { display: grid; gap: 0.75rem; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 768px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .md-grid-2 { grid-template-columns: 1fr; }
+}
+@media (min-width: 768px) {
+  .md-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .md-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .md-grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.tile { background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; }
+.tile-label { font-size: 0.75rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.tile-value { font-size: 1.5rem; font-weight: 600; margin-top: 0.25rem; }
+.tile-value.pos { color: var(--emerald-light); }
+.tile-value.neg { color: var(--rose-light); }
+.tile-sub { font-size: 0.75rem; color: var(--dim); margin-top: 0.25rem; }
+
+.input { width: 100%; background: #09090b; border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem 0.75rem; font-size: 0.875rem; color: var(--text); }
+.input:focus { outline: none; border-color: var(--dim); }
+.input.font-mono { font-family: ui-monospace, monospace; }
+.input-group { display: flex; flex-direction: column; gap: 0.25rem; }
+.input-group label { font-size: 0.75rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.05em; }
+
+.banner { padding: 1rem 1.25rem; border-radius: 0.75rem; border: 1px solid; }
+
+.hero { padding: 1.25rem; border-radius: 0.75rem; background: linear-gradient(135deg, rgba(24,24,27,1), rgba(24,24,27,0.3)); border: 1px solid var(--border); }
+.hero-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+
+.composite-card { padding: 1.25rem; border-radius: 0.75rem; background: linear-gradient(135deg, rgba(217,70,239,0.05), rgba(24,24,27,1), rgba(16,185,129,0.05)); border: 1px solid rgba(217,70,239,0.2); }
+
+.bias-cell { padding: 0.75rem; border-radius: 0.5rem; border: 1px solid; }
+.bias-emerald { border-color: rgba(16,185,129,0.4); background: rgba(16,185,129,0.1); color: var(--emerald-light); }
+.bias-rose { border-color: rgba(244,63,94,0.4); background: rgba(244,63,94,0.1); color: var(--rose-light); }
+.bias-amber { border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.1); color: var(--amber-light); }
+.bias-zinc { border-color: var(--border); background: rgba(24,24,27,0.3); color: var(--muted); }
+
+.bias-btn-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.375rem; }
+.bias-btn { font-size: 0.75rem; padding: 0.5rem; border-radius: 0.375rem; border: 1px solid var(--border); background: transparent; color: var(--dim); font-weight: 500; transition: all 0.15s; }
+.bias-btn.active.bull { background: rgba(16,185,129,0.2); color: var(--emerald-light); border-color: rgba(16,185,129,0.4); }
+.bias-btn.active.bear { background: rgba(244,63,94,0.2); color: var(--rose-light); border-color: rgba(244,63,94,0.4); }
+.bias-btn.active.neutral { background: rgba(113,113,122,0.3); color: var(--text); border-color: var(--dim); }
+
+.score-row { width: 100%; display: flex; gap: 0.75rem; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: rgba(9,9,11,0.4); text-align: left; cursor: pointer; transition: all 0.15s; }
+.score-row.checked { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.4); }
+.score-checkbox { width: 1.25rem; height: 1.25rem; border-radius: 0.25rem; border: 2px solid var(--dim); flex-shrink: 0; margin-top: 0.125rem; display: flex; align-items: center; justify-content: center; }
+.score-row.checked .score-checkbox { background: var(--emerald); border-color: var(--emerald); }
+.score-checkbox svg { width: 1rem; height: 1rem; color: var(--bg); display: none; }
+.score-row.checked .score-checkbox svg { display: block; }
+
+.kz-card { padding: 1rem; border-radius: 0.75rem; border: 1px solid; transition: all 0.2s; }
+.kz-card.active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--muted); }
+.kz-active-tag { font-size: 0.75rem; padding: 0.125rem 0.5rem; background: var(--text); color: var(--bg); border-radius: 0.25rem; font-weight: 600; margin-left: 0.5rem; }
+
+.event-card { padding: 0.75rem; border-radius: 0.5rem; border: 1px solid; margin-bottom: 0.5rem; }
+.event-folder-red { background: rgba(244,63,94,0.15); border-color: rgba(244,63,94,0.4); }
+.event-folder-orange { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.4); }
+.event-folder-yellow { background: rgba(234,179,8,0.15); border-color: rgba(234,179,8,0.4); }
+
+.tag { font-size: 0.75rem; padding: 0.125rem 0.5rem; border-radius: 0.25rem; }
+.tag-emerald { background: rgba(16,185,129,0.15); color: var(--emerald-light); }
+.tag-rose { background: rgba(244,63,94,0.15); color: var(--rose-light); }
+.tag-zinc { background: var(--border); color: var(--muted); }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 0.75rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+.font-mono { font-family: ui-monospace, monospace; }
+.text-emerald { color: var(--emerald-light); }
+.text-rose { color: var(--rose-light); }
+.text-amber { color: var(--amber-light); }
+.text-sky { color: var(--sky-light); }
+.text-fuchsia { color: var(--fuchsia-light); }
+.text-muted { color: var(--muted); }
+.text-dim { color: var(--dim); }
+.uppercase { text-transform: uppercase; }
+.tracking-wider { letter-spacing: 0.05em; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.italic { font-style: italic; }
+.border-b { border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; }
+.divider { border-bottom: 1px solid var(--border); margin: 0.5rem 0; }
+.w-full { width: 100%; }
+.flex-1 { flex: 1; }
+
+ol, ul { padding-left: 1.5rem; }
+ol li, ul li { margin-bottom: 0.25rem; }
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+th { font-size: 0.75rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
+
+a { color: var(--sky-light); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.print-only { display: none; }
+@media print {
+  body { background: white; color: black; }
+  .no-print { display: none !important; }
+  .print-only { display: block; }
+  .printable { background: white !important; color: black !important; padding: 1rem !important; }
+  .printable * { color: black !important; border-color: #999 !important; }
+  .printable table, .printable th, .printable td { border: 1px solid #999 !important; }
+}
+
+.empty-state { padding: 2.5rem 1rem; text-align: center; color: var(--muted); }
+.empty-state svg { width: 2.5rem; height: 2.5rem; margin: 0 auto 0.75rem; color: var(--dim); }
+
+footer { padding: 2rem 1rem; text-align: center; font-size: 0.75rem; color: var(--dim); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+'use strict';
+
+// ──────────── State ────────────
+const PAIRS = ['GBP/USD', 'XAU/USD', 'AUD/USD'];
+let state = {
+  tab: 'dash',
+  trades: [],
+  account: 1000,
+  risk: 1,
+  bias: {},
+  fundamentals: [],
+  zones: [],
+  scoreChecked: {},
+};
+
+// localStorage helpers
+function lsGet(key, fallback) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+  catch (e) { return fallback; }
+}
+function lsSet(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+}
+
+function loadState() {
+  state.trades = lsGet('sd_trades', []);
+  state.account = lsGet('sd_account', 1000);
+  state.risk = lsGet('sd_risk', 1);
+  state.bias = lsGet('sd_bias_' + todayKey(), {});
+  state.fundamentals = lsGet('sd_fund_' + todayKey(), []);
+  state.zones = lsGet('sd_zones', []);
+}
+
+function todayKey() {
+  return new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Manila' });
+}
+
+// ──────────── Computed ────────────
+function getSession(mins) {
+  if (mins >= 540 && mins < 1230) {
+    if (mins >= 900 && mins < 1080) return { name: 'London Killzone', priority: 'high' };
+    if (mins >= 540 && mins < 780) return { name: 'Asian / Sydney-Tokyo', priority: 'low' };
+    return { name: 'Pre-NY Lull', priority: 'low' };
+  }
+  if (mins >= 1230 && mins < 1380) return { name: 'NY Killzone — PRIME', priority: 'prime' };
+  if (mins >= 1380 || mins < 60) return { name: 'NY/London Overlap', priority: 'prime' };
+  if (mins >= 60 && mins < 240) return { name: 'NY PM', priority: 'mid' };
+  return { name: 'Off Hours', priority: 'low' };
+}
+
+function computeFundamentalBias(events) {
+  const weights = { red: 3, orange: 1.5, yellow: 0.5 };
+  const dirVal = { Bullish: 1, Bearish: -1, Neutral: 0 };
+  const cur = {};
+  events.forEach(e => {
+    if (!e.currency || !e.direction) return;
+    cur[e.currency] = (cur[e.currency] || 0) + (weights[e.folder] || 0) * (dirVal[e.direction] || 0);
+  });
+  const out = {};
+  PAIRS.forEach(pair => {
+    let base = 'GBP', quote = 'USD';
+    if (pair === 'XAU/USD') base = 'XAU';
+    if (pair === 'AUD/USD') base = 'AUD';
+    const bs = cur[base] || 0;
+    const qs = cur[quote] || 0;
+    let net = bs - qs;
+    if (pair === 'XAU/USD') {
+      const riskOff = events.filter(e => e.folder === 'red' && e.theme === 'risk-off').length * 0.5;
+      net = -qs + riskOff + (cur['XAU'] || 0);
+    }
+    let verdict = 'NEUTRAL', dir = 'Neutral';
+    if (net >= 2) { verdict = 'STRONG LONG'; dir = 'Long'; }
+    else if (net >= 0.5) { verdict = 'LEAN LONG'; dir = 'Long-lean'; }
+    else if (net <= -2) { verdict = 'STRONG SHORT'; dir = 'Short'; }
+    else if (net <= -0.5) { verdict = 'LEAN SHORT'; dir = 'Short-lean'; }
+    out[pair] = { score: net, verdict, dir };
+  });
+  return out;
+}
+
+function resolveTechDir(pair) {
+  const b = state.bias[pair];
+  if (!b || !b.daily || !b.h4 || !b.h1) return null;
+  const v = [b.daily, b.h4, b.h1];
+  if (v.every(x => x === 'Bull')) return 'Long';
+  if (v.every(x => x === 'Bear')) return 'Short';
+  const bulls = v.filter(x => x === 'Bull').length;
+  const bears = v.filter(x => x === 'Bear').length;
+  if (bulls === 2 && bears === 0) return 'Long-lean';
+  if (bears === 2 && bulls === 0) return 'Short-lean';
+  return 'Neutral';
+}
+
+function compositeVerdict(tech, fund) {
+  if (!tech && !fund) return { tone: 'zinc', label: 'NO DATA', detail: 'Mark bias + fundamentals.' };
+  if (!tech) return { tone: 'zinc', label: 'NEED TECH', detail: 'Mark Daily/4H/1H on Bias Board.' };
+  if (!fund) return { tone: 'zinc', label: 'NEED FUND', detail: 'Log events on News tab.' };
+  const longSet = ['Long', 'Long-lean'], shortSet = ['Short', 'Short-lean'];
+  const tL = longSet.includes(tech), tS = shortSet.includes(tech);
+  const fL = longSet.includes(fund), fS = shortSet.includes(fund);
+  if (tech === 'Long' && fund === 'Long') return { tone: 'emerald', label: 'A+ LONG', detail: 'Both strong long. Trade longs aggressively.' };
+  if (tech === 'Short' && fund === 'Short') return { tone: 'rose', label: 'A+ SHORT', detail: 'Both strong short. Trade shorts aggressively.' };
+  if (tL && fL) return { tone: 'emerald', label: 'A LONG', detail: 'Both lean long.' };
+  if (tS && fS) return { tone: 'rose', label: 'A SHORT', detail: 'Both lean short.' };
+  if ((tL && fS) || (tS && fL)) return { tone: 'rose', label: 'CONFLICT', detail: 'Tech & Fund disagree. NO TRADE.' };
+  if (tech === 'Neutral' && fund !== 'Neutral') return { tone: 'amber', label: 'FUND ONLY', detail: 'Wait for tech to confirm.' };
+  if (fund === 'Neutral' && tech !== 'Neutral') return { tone: 'amber', label: 'TECH ONLY', detail: 'No fundamental tailwind.' };
+  return { tone: 'zinc', label: 'NEUTRAL', detail: 'No clear edge.' };
+}
+
+// ──────────── Inline SVG icons ────────────
+function svg(path, cls) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${cls || ''}" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;">${path}</svg>`;
+}
+const ICONS = {
+  clock: svg('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>'),
+  target: svg('<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'),
+  calc: svg('<rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/>'),
+  book: svg('<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'),
+  bar: svg('<path d="M3 3v18h18"/><path d="M8 17V9"/><path d="M13 17V5"/><path d="M18 17v-7"/>'),
+  shield: svg('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'),
+  plus: svg('<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>'),
+  trash: svg('<polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/>'),
+  alert: svg('<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>'),
+  check: svg('<polyline points="20 6 9 17 4 12"/>'),
+  x: svg('<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>'),
+  activity: svg('<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>'),
+  crosshair: svg('<circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/>', 'crosshair'),
+  layers: svg('<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>'),
+  ruler: svg('<path d="M21.3 8.7l-9.6-9.6L1 11.7l11.6 11.6 8.7-8.7-2.5-2.5"/>'),
+  news: svg('<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>'),
+  printer: svg('<polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>'),
+  list: svg('<line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/>'),
+  ext: svg('<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>'),
+  dollar: svg('<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>'),
+  zap: svg('<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>'),
+};
+
+// ──────────── Render ────────────
+const TABS = [
+  { id: 'dash', label: 'Dashboard', icon: 'activity' },
+  { id: 'bias', label: 'Bias Board', icon: 'layers' },
+  { id: 'play', label: 'Playbook', icon: 'book' },
+  { id: 'fib', label: 'ICT Fibs', icon: 'ruler' },
+  { id: 'kz', label: 'Killzones', icon: 'clock' },
+  { id: 'zones', label: 'Active Zones', icon: 'list' },
+  { id: 'score', label: 'Entry Score', icon: 'crosshair' },
+  { id: 'calc', label: 'Risk & R:R', icon: 'calc' },
+  { id: 'news', label: 'News', icon: 'news' },
+  { id: 'journal', label: 'Journal', icon: 'target' },
+  { id: 'stats', label: 'Stats', icon: 'bar' },
+  { id: 'sheet', label: 'Cheat Sheet', icon: 'printer' },
+  { id: 'rules', label: 'Rules', icon: 'shield' },
+];
+
+const CONFLUENCES = [
+  'Daily bias defined and respected (HTF direction)',
+  '4H structure aligns with Daily (BOS in same direction)',
+  '1H provides refined POI inside 4H zone',
+  'Liquidity swept (PDH/PDL, range, equal H/L)',
+  'CHoCH confirmed on 15m or 5m',
+  'Entry inside Discount (long) / Premium (short)',
+  'Killzone active (London / NY / Overlap)',
+  'R:R >= 1:2 to nearest opposing liquidity',
+  'No red-folder news within 30 min',
+  'Clean displacement on impulse leg (with imbalance)',
+  'FRVP confluence — entry at POC/VAH/VAL',
+  'Price inside OTE zone (0.618-0.79)',
+];
+
+const RULES = [
+  '1% risk per trade — no exceptions',
+  'Minimum 1:2 R:R or no entry',
+  'Max 2 trades per session',
+  'Stop for the day after 2 consecutive losses',
+  'No trades 30 min before/after red-folder news',
+  'Daily loss cap: -3% — close terminal',
+  'Daily profit cap: +5% — bank it, walk away',
+  'Only A+ or A confluence scores qualify',
+  'Daily/4H/1H must align — or wait',
+  'No revenge trading. Ever.',
+];
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]);
+}
+
+function renderHeader() {
+  const now = new Date();
+  const phtParts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Manila', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).formatToParts(now);
+  const get = t => parseInt((phtParts.find(p => p.type === t) || {}).value || '0');
+  const h = get('hour'), m = get('minute'), s = get('second');
+  const mins = h * 60 + m;
+  const session = getSession(mins);
+  const phtClock = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  const phtDate = now.toLocaleDateString('en-US', { timeZone: 'Asia/Manila', weekday: 'short', month: 'short', day: 'numeric' });
+
+  const pairBias = computeFundamentalBias(state.fundamentals);
+  const hasFund = state.fundamentals.length > 0;
+
+  let chipHTML = '';
+  if (hasFund) {
+    chipHTML = '<button class="fund-chip" onclick="setTab(\'news\')" title="Fundamentals">' + ICONS.news + PAIRS.map(p => {
+      const b = pairBias[p];
+      const short = p === 'GBP/USD' ? 'GU' : p === 'XAU/USD' ? 'XAU' : 'AU';
+      const arrow = (b.dir === 'Long' || b.dir === 'Long-lean') ? '▲' : (b.dir === 'Short' || b.dir === 'Short-lean') ? '▼' : '–';
+      const cls = (b.dir === 'Long' || b.dir === 'Long-lean') ? 'fund-long' : (b.dir === 'Short' || b.dir === 'Short-lean') ? 'fund-short' : 'fund-neutral';
+      return `<span class="fund-tag ${cls}">${short} ${arrow}</span>`;
+    }).join('') + '</button>';
+  } else {
+    chipHTML = '<button class="fund-chip" onclick="setTab(\'news\')" style="color: var(--dim);">' + ICONS.news + '<span style="font-size:0.75rem;">Set Fundamentals</span></button>';
+  }
+
+  return `
+    <div class="header">
+      <div class="container">
+        <div class="header-row">
+          <div class="brand">
+            <div class="brand-logo">${ICONS.crosshair.replace('width:1em;height:1em', 'width:1.25rem;height:1.25rem;color:#09090b')}</div>
+            <div>
+              <div class="brand-name">Sniper Desk</div>
+              <div class="brand-tag">GBP/USD · XAU/USD · AUD/USD · ICT/SMC</div>
+            </div>
+          </div>
+          <div class="clock-row">
+            <div class="clock-text">
+              <div class="clock-date">${phtDate} · Manila</div>
+              <div class="clock-time">${phtClock}</div>
+            </div>
+            <div class="session-badge tone-${session.priority}">
+              <span class="dot"></span>${session.name}
+            </div>
+            ${chipHTML}
+          </div>
+        </div>
+        <div class="tabs">
+          ${TABS.map(t => `<button class="tab ${state.tab === t.id ? 'active' : ''}" onclick="setTab('${t.id}')">${ICONS[t.icon]}${t.label}</button>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderDashboard() {
+  const now = new Date();
+  const phtParts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Manila', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(now);
+  const h = parseInt((phtParts.find(p => p.type === 'hour') || {}).value || '0');
+  const m = parseInt((phtParts.find(p => p.type === 'minute') || {}).value || '0');
+  const session = getSession(h * 60 + m);
+
+  let sessionMsg = "Off-killzone. Plan, journal, or rest.";
+  if (session.priority === 'prime') sessionMsg = 'Sniper window. London-NY overlap. All 3 pairs active.';
+  else if (session.priority === 'high') sessionMsg = 'London Killzone. GBP/USD primary, AUD/USD secondary.';
+  else if (session.priority === 'mid') sessionMsg = 'NY PM session. Continuation only. Reduce size.';
+
+  const last7 = state.trades.filter(t => Date.now() - t.timestamp < 7 * 86400000);
+  const wins = last7.filter(t => t.result === 'Win').length;
+  const losses = last7.filter(t => t.result === 'Loss').length;
+  const wr = last7.length ? Math.round((wins / last7.length) * 100) : 0;
+  const totalR = last7.reduce((s, t) => s + (parseFloat(t.rResult) || 0), 0);
+
+  const pairBias = computeFundamentalBias(state.fundamentals);
+
+  return `
+    <div class="section">
+      <div class="hero">
+        <div class="hero-row">
+          <div>
+            <div class="label">Current Session</div>
+            <div class="text-2xl font-semibold mt-1">${escapeHtml(session.name)}</div>
+            <div class="text-sm text-muted mt-2">${escapeHtml(sessionMsg)}</div>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button class="btn btn-sky" onclick="setTab('bias')">${ICONS.layers} Mark Bias</button>
+            <button class="btn btn-fuchsia" onclick="setTab('news')">${ICONS.news} Log News</button>
+            <button class="btn btn-emerald" onclick="setTab('score')">${ICONS.crosshair} Score Setup</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="composite-card">
+        <div class="flex items-center gap-2 mb-3">${ICONS.crosshair}<span class="text-fuchsia font-semibold">Tech vs Fund — Composite Verdict</span></div>
+        <div class="grid md-grid-3">
+          ${PAIRS.map(p => {
+            const tech = resolveTechDir(p);
+            const fund = state.fundamentals.length > 0 ? pairBias[p].dir : null;
+            const v = compositeVerdict(tech, fund);
+            return `
+              <div class="bias-cell bias-${v.tone}">
+                <div class="flex justify-between items-center mb-2"><span class="font-semibold">${p}</span><span class="font-bold">${v.label}</span></div>
+                <div class="text-xs flex items-center gap-2 mb-1"><span class="text-dim">Tech:</span><span class="font-mono">${tech || '—'}</span><span class="text-dim">·</span><span class="text-dim">Fund:</span><span class="font-mono">${fund || '—'}</span></div>
+                <div class="text-xs mt-2" style="opacity:0.8">${v.detail}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+
+      <div class="grid md-grid-4">
+        <div class="tile"><div class="tile-label">Account</div><div class="tile-value">$${state.account.toLocaleString()}</div><div class="tile-sub">${state.risk}% risk/trade</div></div>
+        <div class="tile"><div class="tile-label">Trades (7d)</div><div class="tile-value">${last7.length}</div><div class="tile-sub">${wins}W / ${losses}L</div></div>
+        <div class="tile"><div class="tile-label">Win Rate (7d)</div><div class="tile-value ${wr >= 50 ? 'pos' : 'neg'}">${wr}%</div></div>
+        <div class="tile"><div class="tile-label">R Captured (7d)</div><div class="tile-value ${totalR >= 0 ? 'pos' : 'neg'}">${totalR.toFixed(2)}R</div></div>
+      </div>
+
+      <div class="grid md-grid-2">
+        <div class="card p-5">
+          <div class="flex items-center gap-2 mb-3 text-emerald">${ICONS.zap}<span class="font-medium" style="color: var(--text)">Daily Pre-Trade Routine</span></div>
+          <ol class="text-sm">
+            <li>Mark Daily bias on all 3 pairs (Bias Board)</li>
+            <li>Refine with 4H structure (BOS/CHoCH)</li>
+            <li>Mark 1H POI inside aligned 4H zones</li>
+            <li>Log fundamental events from ForexFactory</li>
+            <li>Check Tech vs Fund composite</li>
+            <li>Set killzone alarms: 3 PM, 8:30 PM PHT</li>
+          </ol>
+        </div>
+        <div class="card p-5">
+          <div class="flex items-center gap-2 mb-3 text-amber">${ICONS.alert}<span class="font-medium" style="color: var(--text)">No-Trade Conditions</span></div>
+          <ul class="text-sm">
+            <li>Tech vs Fund showing CONFLICT</li>
+            <li>Score below 9/12 confluences</li>
+            <li>Already 2 trades this session</li>
+            <li>2 losses today already</li>
+            <li>Red news within 1 hour</li>
+            <li>Tired or distracted</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderBias() {
+  const today = todayKey();
+  return `
+    <div class="section">
+      <div>
+        <h2>Bias Board — Multi-Timeframe</h2>
+        <p class="muted mt-1">Mark your read. Saved per day. ${today}</p>
+      </div>
+      <div class="card-sky banner">
+        <span class="text-sky font-semibold">How to read each TF:</span> Daily = macro. 4H = structural trend. 1H = refinement. Trade only when all 3 align.
+      </div>
+      <div class="grid md-grid-3">
+        ${PAIRS.map(pair => {
+          const b = state.bias[pair] || {};
+          let alignTier = null, alignTone = 'zinc', alignText = 'Mark all 3 TFs';
+          if (b.daily && b.h4 && b.h1) {
+            const v = [b.daily, b.h4, b.h1];
+            if (v.every(x => x === 'Bull')) { alignTier = 'A+'; alignTone = 'emerald'; alignText = 'A+ ALIGNED — Hunt longs from discount POI'; }
+            else if (v.every(x => x === 'Bear')) { alignTier = 'A+'; alignTone = 'rose'; alignText = 'A+ ALIGNED — Hunt shorts from premium POI'; }
+            else {
+              const bulls = v.filter(x => x === 'Bull').length, bears = v.filter(x => x === 'Bear').length;
+              if (bulls === 2 && bears === 0) { alignTier = 'B'; alignTone = 'amber'; alignText = 'B — Wait for misaligned TF to flip bullish'; }
+              else if (bears === 2 && bulls === 0) { alignTier = 'B'; alignTone = 'amber'; alignText = 'B — Wait for misaligned TF to flip bearish'; }
+              else { alignTier = 'C'; alignText = 'NO TRADE — Conflicting timeframes'; }
+            }
+          }
+          return `
+            <div class="card p-5">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-lg font-semibold">${pair}</span>
+                ${alignTier ? `<span class="bias-cell bias-${alignTone} text-xs font-bold" style="padding:0.25rem 0.5rem">${alignTier}</span>` : ''}
+              </div>
+              ${['daily', 'h4', 'h1'].map(tf => {
+                const lbl = tf === 'daily' ? 'Daily' : tf === 'h4' ? '4H' : '1H';
+                return `
+                  <div class="mt-3">
+                    <div class="label mb-2">${lbl}</div>
+                    <div class="bias-btn-row">
+                      ${['Bull', 'Bear', 'Neutral'].map(opt => {
+                        const cls = b[tf] === opt ? 'active ' + opt.toLowerCase() : '';
+                        return `<button class="bias-btn ${cls}" onclick="setBias('${pair}','${tf}','${opt}')">${opt}</button>`;
+                      }).join('')}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+              <div class="bias-cell bias-${alignTone} mt-4">
+                <div class="text-xs uppercase" style="opacity:0.7">Verdict</div>
+                <div class="font-semibold mt-1">${alignText}</div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderPlaybook() {
+  const setupHTML = (num, color, title, text, prep, trigger, entry, tp) => `
+    <div class="card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="tag tag-${color}" style="font-weight:500">SETUP ${num}</span>
+        <span class="text-lg font-semibold">${title}</span>
+      </div>
+      <p class="muted mb-3">${text}</p>
+      <div class="grid md-grid-2 gap-3">
+        <div><div class="label mb-1">Prep</div><ul class="text-sm">${prep.map(x => `<li>${x}</li>`).join('')}</ul></div>
+        <div><div class="label mb-1">Trigger</div><ul class="text-sm">${trigger.map(x => `<li>${x}</li>`).join('')}</ul></div>
+        <div><div class="label mb-1">Entry & SL</div><ul class="text-sm">${entry.map(x => `<li>${x}</li>`).join('')}</ul></div>
+        <div><div class="label mb-1">TP</div><ul class="text-sm">${tp.map(x => `<li>${x}</li>`).join('')}</ul></div>
+      </div>
+    </div>
+  `;
+
+  return `
+    <div class="section">
+      <h2>ICT/SMC Sniper Playbook</h2>
+      <div class="card-sky banner">
+        <div class="text-sky font-semibold mb-2">Top-Down Framework</div>
+        <div class="grid md-grid-4">
+          <div><div class="label">Daily</div><div class="font-medium">Macro Bias</div></div>
+          <div><div class="label">4H</div><div class="font-medium">Structure</div></div>
+          <div><div class="label">1H</div><div class="font-medium">Refinement</div></div>
+          <div><div class="label">5m/1m</div><div class="font-medium">Execution</div></div>
+        </div>
+      </div>
+      ${setupHTML('01', 'emerald', 'London Judas Reversal — GBP/USD', 'London opens, fakes one direction, then reverses.',
+        ['Daily bias from last major BOS', '4H structure direction', 'Mark Asian range high/low'],
+        ['Sweep of Asian range', 'Displacement back into range', 'CHoCH on 15m or 5m'],
+        ['Enter on FVG retest', 'SL: 2-3 pips beyond swept wick'],
+        ['TP1: opposite Asian range (1:2)', 'TP2: PDH/PDL (1:3+)'])}
+      ${setupHTML('02', 'amber', 'NY Open Displacement — XAU/USD', 'Gold loves NY open. Sweep + displacement = FVG retest.',
+        ['Daily gold bias vs DXY', 'Mark London session high/low'],
+        ['Sweep of London high/low', 'Displacement candle', 'FVG retest'],
+        ['Rejection wick + 1m close', 'SL beyond displacement origin'],
+        ['TP1: 1:2', 'TP2: opposite session liquidity'])}
+      ${setupHTML('03', 'sky', 'Sydney-Range Reversal — AUD/USD', 'Sweep Sydney/Tokyo range, reverse with HTF direction.',
+        ['Daily AUD bias', 'Mark Sydney/Tokyo range'],
+        ['Sweep of range', 'CHoCH on 15m/5m'],
+        ['FVG 50% retest', 'SL 3-4 pips beyond wick'],
+        ['TP1: opposite range (1:2)', 'TP2: 4H liquidity (1:3+)'])}
+      ${setupHTML('04', 'fuchsia', 'FRVP Breakout-Retest — All Pairs', 'Volume profile gives institutional levels. Break + retest.',
+        ['Plot POC, VAH, VAL', 'Pick a defined range'],
+        ['VAH or VAL break', 'Retest at broken level'],
+        ['Rejection + 1m close', 'SL beyond POC'],
+        ['TP1: nearest HVN (1:2)', 'TP2: LVN (1:3+)'])}
+    </div>
+  `;
+}
+
+function renderFibs() {
+  const lvls = [
+    { l: '0', d: 'Swing extreme — anchor', tone: 'rose' },
+    { l: '0.5', d: 'Equilibrium boundary', tone: 'amber' },
+    { l: '0.618', d: 'OTE Start', tone: 'fuchsia' },
+    { l: '0.705', d: 'OTE Sweet Spot', tone: 'fuchsia' },
+    { l: '0.79', d: 'OTE Deep', tone: 'fuchsia' },
+    { l: '1.0', d: 'INVALIDATION', tone: 'rose' },
+  ];
+  return `
+    <div class="section">
+      <h2>ICT Fibonacci — OTE</h2>
+      <div class="card-fuchsia banner">
+        <div class="text-fuchsia font-semibold mb-2">Optimal Trade Entry (OTE)</div>
+        <p class="text-sm">0.618-0.79 zone. 0.705 = sweet spot. Enter deep in discount (longs) or premium (shorts).</p>
+      </div>
+      <div class="card p-5">
+        <div class="font-medium mb-3">Retracement Levels</div>
+        ${lvls.map(l => `
+          <div class="bias-cell bias-${l.tone} mb-2 flex items-center gap-3">
+            <span class="font-mono text-lg font-bold" style="width:4rem">${l.l}</span>
+            <span>${l.d}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card-sky banner">
+        <div class="text-sky font-semibold mb-2">TradingView Setup</div>
+        <p class="text-sm mb-2"><strong>Retracement coefficients:</strong></p>
+        <p class="font-mono text-fuchsia text-xs" style="background:#09090b;padding:0.5rem;border-radius:0.25rem">0, 0.236, 0.382, 0.5, 0.618, 0.705, 0.79, 1</p>
+        <p class="text-sm mt-3 mb-2"><strong>Extension coefficients:</strong></p>
+        <p class="font-mono text-emerald text-xs" style="background:#09090b;padding:0.5rem;border-radius:0.25rem">0, 0.5, 1, 1.5, 2, 2.5, 3, 4</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderKillzones() {
+  const now = new Date();
+  const phtParts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Manila', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(now);
+  const h = parseInt((phtParts.find(p => p.type === 'hour') || {}).value || '0');
+  const m = parseInt((phtParts.find(p => p.type === 'minute') || {}).value || '0');
+  const mins = h * 60 + m;
+
+  const zones = [
+    { name: 'Sydney/Tokyo', start: 5*60, end: 13*60, label: '5:00 AM - 1:00 PM', priority: 'low', note: 'AUD range builds.', pair: 'AUD' },
+    { name: 'Pre-London Lull', start: 13*60, end: 15*60, label: '1:00 - 3:00 PM', priority: 'low', note: 'Plan, prep. No entries.', pair: '—' },
+    { name: 'London Killzone', start: 15*60, end: 18*60, label: '3:00 - 6:00 PM', priority: 'high', note: 'Judas swing. GBP primary.', pair: 'GBP + AUD' },
+    { name: 'London Lunch', start: 18*60, end: 20*60+30, label: '6:00 - 8:30 PM', priority: 'low', note: 'Skip unless A+.', pair: 'Caution' },
+    { name: 'NY Killzone', start: 20*60+30, end: 23*60, label: '8:30 - 11:00 PM', priority: 'prime', note: 'Sweep + FVG model.', pair: 'All 3' },
+    { name: 'NY/London Overlap', start: 23*60, end: 24*60, label: '11:00 PM - 12:00 AM', priority: 'prime', note: 'London close overlap.', pair: 'All 3' },
+    { name: 'NY PM', start: 0, end: 4*60, label: '12:00 - 4:00 AM', priority: 'mid', note: 'Continuation only.', pair: 'XAU + AUD' },
+  ];
+
+  return `
+    <div class="section">
+      <h2>Killzones — Manila Time (PHT)</h2>
+      <div class="flex flex-col gap-3">
+        ${zones.map(z => {
+          const active = z.start < z.end ? (mins >= z.start && mins < z.end) : (mins >= z.start || mins < z.end);
+          return `
+            <div class="kz-card card-${z.priority === 'prime' ? 'fuchsia' : z.priority === 'high' ? 'emerald' : z.priority === 'mid' ? 'amber' : ''} ${active ? 'active' : ''}">
+              <div class="flex justify-between flex-wrap gap-3">
+                <div>
+                  <div class="font-medium flex items-center gap-2">${z.name}${active ? `<span class="kz-active-tag">LIVE</span>` : ''}</div>
+                  <div class="text-sm text-muted mt-1">${z.label}</div>
+                </div>
+                <div class="text-xs text-muted" style="padding:0.25rem 0.5rem;background:rgba(9,9,11,0.5);border-radius:0.25rem;border:1px solid var(--border);align-self:flex-start">${z.pair}</div>
+              </div>
+              <div class="text-sm mt-3">${z.note}</div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderEntryScore() {
+  const score = Object.values(state.scoreChecked).filter(Boolean).length;
+  let grade = 'C', gradeColor = 'var(--rose-light)';
+  if (score >= 11) { grade = 'A+'; gradeColor = 'var(--emerald-light)'; }
+  else if (score >= 9) { grade = 'A'; gradeColor = 'var(--emerald)'; }
+  else if (score >= 7) { grade = 'B'; gradeColor = 'var(--amber-light)'; }
+
+  let verdict = 'NO TRADE', verdictColor = 'var(--rose-light)';
+  if (score >= 9) { verdict = 'TRADE — full size'; verdictColor = 'var(--emerald-light)'; }
+  else if (score >= 7) { verdict = 'SKIP or half size'; verdictColor = 'var(--amber-light)'; }
+
+  return `
+    <div class="section">
+      <h2>Entry Confluence Scorer</h2>
+      <div class="card p-5">
+        <div class="flex flex-col gap-2">
+          ${CONFLUENCES.map((c, i) => {
+            const on = !!state.scoreChecked[i];
+            return `
+              <button class="score-row ${on ? 'checked' : ''}" onclick="toggleScore(${i})">
+                <div class="score-checkbox">${ICONS.check}</div>
+                <span class="text-sm">${c}</span>
+              </button>
+            `;
+          }).join('')}
+        </div>
+      </div>
+      <div class="card p-5">
+        <div class="flex justify-between flex-wrap gap-4 items-center">
+          <div><div class="label">Score</div><div class="text-3xl font-bold">${score}<span class="text-dim text-xl">/12</span></div></div>
+          <div><div class="label">Grade</div><div class="text-3xl font-bold" style="color:${gradeColor}">${grade}</div></div>
+          <div class="text-right"><div class="label">Verdict</div><div class="text-lg font-semibold" style="color:${verdictColor}">${verdict}</div></div>
+        </div>
+        <button onclick="resetScore()" class="text-xs text-dim mt-3" style="background:none;border:none">Reset</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderRiskCalc() {
+  const pair = state.calcPair || 'GBP/USD';
+  const slDist = state.calcSL || 20;
+  const riskAmt = (state.account * state.risk) / 100;
+  const perPip = pair === 'XAU/USD' ? 1 : 10;
+  const lots = riskAmt / (slDist * perPip);
+
+  return `
+    <div class="section">
+      <h2>Position Size Calculator</h2>
+      <div class="card p-5">
+        <div class="grid md-grid-2 gap-3">
+          <div class="input-group"><label>Account ($)</label><input class="input font-mono text-lg" type="number" value="${state.account}" oninput="setAccount(this.value)" /></div>
+          <div class="input-group"><label>Risk %</label><input class="input font-mono text-lg" type="number" step="0.25" value="${state.risk}" oninput="setRisk(this.value)" /></div>
+          <div class="input-group"><label>Pair</label><select class="input" onchange="setCalcPair(this.value)">${PAIRS.map(p => `<option ${p === pair ? 'selected' : ''}>${p}</option>`).join('')}</select></div>
+          <div class="input-group"><label>SL Distance</label><input class="input font-mono text-lg" type="number" value="${slDist}" oninput="setCalcSL(this.value)" /></div>
+        </div>
+      </div>
+      <div class="grid md-grid-3">
+        <div class="tile"><div class="tile-label">Risk $</div><div class="tile-value">$${riskAmt.toFixed(2)}</div></div>
+        <div class="tile" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.3)"><div class="tile-label" style="color:var(--emerald-light)">Position</div><div class="tile-value pos">${lots.toFixed(3)} lots</div></div>
+        <div class="tile"><div class="tile-label">Per-Unit</div><div class="tile-value">$${perPip}</div></div>
+      </div>
+
+      ${renderRRCalc()}
+    </div>
+  `;
+}
+
+function renderRRCalc() {
+  const en = parseFloat(state.rrEntry) || NaN;
+  const sl = parseFloat(state.rrSL) || NaN;
+  const tp1 = parseFloat(state.rrTP1) || NaN;
+  const valid = !isNaN(en) && !isNaN(sl) && en !== sl;
+  const slDist = valid ? Math.abs(en - sl) : 0;
+  const r1 = valid && !isNaN(tp1) ? Math.abs(tp1 - en) / slDist : 0;
+
+  return `
+    <div class="card-emerald banner mt-4">
+      <div class="text-emerald font-semibold mb-3 flex items-center gap-2">${ICONS.dollar} R:R Calculator</div>
+      <div class="grid md-grid-3 gap-3 mb-3">
+        <div class="input-group"><label>Entry</label><input class="input font-mono" type="number" step="0.00001" value="${state.rrEntry || ''}" oninput="setRR('Entry', this.value)" /></div>
+        <div class="input-group"><label style="color:var(--rose-light)">SL</label><input class="input font-mono" type="number" step="0.00001" value="${state.rrSL || ''}" oninput="setRR('SL', this.value)" /></div>
+        <div class="input-group"><label style="color:var(--emerald-light)">TP1</label><input class="input font-mono" type="number" step="0.00001" value="${state.rrTP1 || ''}" oninput="setRR('TP1', this.value)" /></div>
+      </div>
+      ${valid ? `
+        <div class="grid md-grid-2 gap-3">
+          <div class="tile"><div class="tile-label">SL Distance</div><div class="tile-value font-mono">${slDist.toFixed(5)}</div></div>
+          <div class="tile" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.3)"><div class="tile-label" style="color:var(--emerald-light)">TP1 R:R</div><div class="tile-value font-mono ${r1 >= 2 ? 'pos' : ''}" style="color:${r1 >= 2 ? 'var(--emerald-light)' : 'var(--amber-light)'}">${r1.toFixed(2)}R</div></div>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function renderNews() {
+  const links = [
+    { name: 'ForexFactory', url: 'https://www.forexfactory.com/calendar' },
+    { name: 'Investing.com', url: 'https://www.investing.com/economic-calendar/' },
+    { name: 'FXStreet', url: 'https://www.fxstreet.com/economic-calendar' },
+    { name: 'MyFXBook', url: 'https://www.myfxbook.com/forex-economic-calendar' },
+  ];
+
+  const pairBias = computeFundamentalBias(state.fundamentals);
+
+  return `
+    <div class="section">
+      <h2>News & Fundamental Calendar</h2>
+
+      <div class="card-rose banner">
+        <div class="flex items-start gap-3">
+          ${ICONS.alert}
+          <div><div class="font-semibold text-rose">Iron Rule</div><div class="text-sm mt-1">No trades 30 min before/after red-folder news.</div></div>
+        </div>
+      </div>
+
+      <div class="card p-5">
+        <div class="font-medium mb-3 flex items-center gap-2 text-sky">${ICONS.ext} Live Calendars</div>
+        <div class="grid md-grid-2">
+          ${links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="card p-4" style="display:block;text-decoration:none;color:inherit"><div class="flex justify-between items-center"><span class="font-semibold">${l.name}</span>${ICONS.ext}</div></a>`).join('')}
+        </div>
+      </div>
+
+      <div class="card-fuchsia banner">
+        <div class="flex justify-between flex-wrap gap-3 mb-3">
+          <div>
+            <div class="text-fuchsia font-semibold flex items-center gap-2">${ICONS.activity} Fundamental Bias Engine</div>
+            <p class="text-xs text-muted mt-1">Log today's events. Tool weights by folder & direction.</p>
+          </div>
+          <button class="btn btn-emerald" onclick="toggleEventForm()">${ICONS.plus} ${state.showEventForm ? 'Cancel' : 'Add Event'}</button>
+        </div>
+
+        ${state.showEventForm ? `
+          <div class="card p-4 mb-3">
+            <div class="grid md-grid-3 gap-3">
+              <div class="input-group"><label>Folder</label><select class="input" id="ef_folder"><option value="red">🔴 Red</option><option value="orange">🟠 Orange</option><option value="yellow">🟡 Yellow</option></select></div>
+              <div class="input-group"><label>Currency</label><select class="input" id="ef_currency"><option>USD</option><option>GBP</option><option>AUD</option><option>EUR</option><option>JPY</option><option>XAU</option></select></div>
+              <div class="input-group"><label>Direction</label><select class="input" id="ef_direction"><option>Bullish</option><option>Bearish</option><option>Neutral</option></select></div>
+              <div class="input-group"><label>Event</label><input class="input" id="ef_name" placeholder="NFP, CPI, BoE..." /></div>
+              <div class="input-group"><label>Theme</label><select class="input" id="ef_theme"><option value="normal">Normal</option><option value="risk-off">Risk-Off</option><option value="risk-on">Risk-On</option></select></div>
+              <div class="input-group"><label>Notes</label><input class="input" id="ef_notes" /></div>
+            </div>
+            <button class="btn btn-emerald w-full mt-3" onclick="saveEvent()">Save Event</button>
+          </div>
+        ` : ''}
+
+        <div class="grid md-grid-3 mb-3">
+          ${PAIRS.map(p => {
+            const b = pairBias[p];
+            const tone = (b.dir === 'Long' || b.dir === 'Long-lean') ? 'emerald' : (b.dir === 'Short' || b.dir === 'Short-lean') ? 'rose' : 'zinc';
+            return `
+              <div class="bias-cell bias-${tone}">
+                <div class="flex justify-between mb-1"><span class="font-semibold">${p}</span><span class="text-xs" style="opacity:0.7">Score: ${b.score >= 0 ? '+' : ''}${b.score.toFixed(1)}</span></div>
+                <div class="text-lg font-bold">${b.verdict}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+
+        ${state.fundamentals.length === 0 ? '<div class="empty-state text-sm">No events logged. Add red/orange/yellow events.</div>' : `
+          <div>
+            ${state.fundamentals.map(e => `
+              <div class="event-card event-folder-${e.folder}">
+                <div class="flex justify-between gap-3 flex-wrap">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="tag tag-${e.folder === 'red' ? 'rose' : e.folder === 'orange' ? 'rose' : 'zinc'}">● ${e.folder.toUpperCase()}</span>
+                      <span class="tag tag-zinc font-mono">${e.currency}</span>
+                      <span class="font-medium">${escapeHtml(e.name)}</span>
+                    </div>
+                    <select class="input text-xs mt-2" style="width:auto;display:inline-block" onchange="updateEventDir(${e.id}, this.value)">
+                      <option ${e.direction === 'Bullish' ? 'selected' : ''}>Bullish</option>
+                      <option ${e.direction === 'Bearish' ? 'selected' : ''}>Bearish</option>
+                      <option ${e.direction === 'Neutral' ? 'selected' : ''}>Neutral</option>
+                    </select>
+                  </div>
+                  <button onclick="deleteEvent(${e.id})" style="background:none;border:none;color:var(--dim);cursor:pointer">${ICONS.trash}</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `}
+      </div>
+    </div>
+  `;
+}
+
+function renderJournal() {
+  return `
+    <div class="section">
+      <div class="flex justify-between flex-wrap gap-3">
+        <div><h2>Trade Journal</h2><p class="muted">${state.trades.length} trades logged.</p></div>
+        <button class="btn btn-emerald" onclick="toggleTradeForm()">${ICONS.plus} ${state.showTradeForm ? 'Cancel' : 'Log Trade'}</button>
+      </div>
+      ${state.showTradeForm ? `
+        <div class="card p-5">
+          <div class="grid md-grid-3 gap-3">
+            <div class="input-group"><label>Pair</label><select class="input" id="tr_pair">${PAIRS.map(p => `<option>${p}</option>`).join('')}</select></div>
+            <div class="input-group"><label>Direction</label><select class="input" id="tr_direction"><option>Long</option><option>Short</option></select></div>
+            <div class="input-group"><label>Setup</label><select class="input" id="tr_setup"><option>Judas Reversal</option><option>NY Displacement</option><option>Sydney-Range</option><option>FRVP Breakout</option><option>Other</option></select></div>
+            <div class="input-group"><label>Entry</label><input class="input" type="number" step="0.0001" id="tr_entry" /></div>
+            <div class="input-group"><label>SL</label><input class="input" type="number" step="0.0001" id="tr_sl" /></div>
+            <div class="input-group"><label>TP</label><input class="input" type="number" step="0.0001" id="tr_tp" /></div>
+            <div class="input-group"><label>Result</label><select class="input" id="tr_result"><option>Win</option><option>Loss</option><option>BE</option></select></div>
+            <div class="input-group"><label>R Multiple</label><input class="input" type="number" step="0.1" id="tr_r" placeholder="2.5 or -1" /></div>
+            <div class="input-group"><label>Notes</label><input class="input" id="tr_notes" /></div>
+          </div>
+          <button class="btn btn-emerald w-full mt-3" onclick="saveTrade()">Save Trade</button>
+        </div>
+      ` : ''}
+      ${state.trades.length === 0 ? `<div class="card p-5 empty-state">${ICONS.target}<div>No trades yet.</div></div>` : `
+        <div>
+          ${state.trades.map(t => `
+            <div class="card p-4 mb-2">
+              <div class="flex justify-between gap-3 flex-wrap">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-medium">${t.pair}</span>
+                    <span class="tag tag-${t.direction === 'Long' ? 'emerald' : 'rose'}">${t.direction}</span>
+                    <span class="tag tag-zinc">${escapeHtml(t.setup)}</span>
+                    <span class="text-xs text-dim">${t.date}</span>
+                  </div>
+                  <div class="flex gap-4 mt-2 text-sm">
+                    <span class="font-semibold ${t.result === 'Win' ? 'text-emerald' : t.result === 'Loss' ? 'text-rose' : 'text-muted'}">${t.result} ${t.rResult ? `(${t.rResult > 0 ? '+' : ''}${t.rResult}R)` : ''}</span>
+                  </div>
+                  ${t.notes ? `<div class="text-sm text-muted mt-2 italic">${escapeHtml(t.notes)}</div>` : ''}
+                </div>
+                <button onclick="deleteTrade(${t.id})" style="background:none;border:none;color:var(--dim);cursor:pointer">${ICONS.trash}</button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    </div>
+  `;
+}
+
+function renderStats() {
+  if (!state.trades.length) return `<div class="card p-5 empty-state">${ICONS.bar}<div>Log trades to see stats.</div></div>`;
+  const wins = state.trades.filter(t => t.result === 'Win').length;
+  const losses = state.trades.filter(t => t.result === 'Loss').length;
+  const wr = (wins / state.trades.length) * 100;
+  const totalR = state.trades.reduce((s, t) => s + (parseFloat(t.rResult) || 0), 0);
+
+  return `
+    <div class="section">
+      <h2>Performance Stats</h2>
+      <div class="grid md-grid-4">
+        <div class="tile"><div class="tile-label">Total</div><div class="tile-value">${state.trades.length}</div></div>
+        <div class="tile"><div class="tile-label">Win Rate</div><div class="tile-value ${wr >= 50 ? 'pos' : 'neg'}">${wr.toFixed(1)}%</div></div>
+        <div class="tile"><div class="tile-label">Total R</div><div class="tile-value ${totalR >= 0 ? 'pos' : 'neg'}">${totalR > 0 ? '+' : ''}${totalR.toFixed(2)}R</div></div>
+        <div class="tile"><div class="tile-label">Wins/Losses</div><div class="tile-value">${wins}/${losses}</div></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderActiveZones() {
+  return `
+    <div class="section">
+      <h2>Active Zones — Sniper Watchlist</h2>
+      <p class="muted">Coming soon. Use the Journal tab for now.</p>
+    </div>
+  `;
+}
+
+function renderCheatSheet() {
+  const today = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Manila', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  return `
+    <div class="section">
+      <div class="flex justify-between flex-wrap no-print">
+        <div><h2>Daily Bias Cheat Sheet</h2><p class="muted">Print or save as PDF.</p></div>
+        <button class="btn btn-emerald" onclick="window.print()">${ICONS.printer} Print</button>
+      </div>
+      <div class="card p-5 printable" style="background:white;color:black">
+        <div class="border-b mb-3">
+          <div class="flex justify-between"><span class="text-2xl font-bold" style="color:black">SNIPER DESK</span><span class="text-xs" style="color:#666">${today}</span></div>
+          <div class="text-xs" style="color:#666">GBP/USD · XAU/USD · AUD/USD · ICT/SMC · PHT</div>
+        </div>
+        <div class="mb-4"><div class="font-bold uppercase mb-2">1. Daily Bias (mark before 8 AM)</div>
+          <table style="border:1px solid #999"><thead><tr style="background:#f0f0f0"><th style="border:1px solid #999;padding:0.25rem">Pair</th><th style="border:1px solid #999;padding:0.25rem">Daily</th><th style="border:1px solid #999;padding:0.25rem">4H</th><th style="border:1px solid #999;padding:0.25rem">1H</th><th style="border:1px solid #999;padding:0.25rem">Tier</th></tr></thead>
+          <tbody>${PAIRS.map(p => `<tr><td style="border:1px solid #999;padding:0.5rem;font-weight:bold">${p}</td><td style="border:1px solid #999"></td><td style="border:1px solid #999"></td><td style="border:1px solid #999"></td><td style="border:1px solid #999"></td></tr>`).join('')}</tbody></table>
+        </div>
+        <div class="mb-4"><div class="font-bold uppercase mb-2">2. Killzones (PHT)</div>
+          <div class="grid grid-3 text-xs"><div><strong>London KZ:</strong> 3:00-6:00 PM</div><div><strong>NY KZ:</strong> 8:30-11:00 PM</div><div><strong>Overlap:</strong> 11 PM-12 AM</div></div>
+        </div>
+        <div><div class="font-bold uppercase mb-2">3. Non-Negotiables</div>
+          <ol class="text-xs">${RULES.slice(0, 5).map(r => `<li>${r}</li>`).join('')}</ol>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderRules() {
+  return `
+    <div class="section">
+      <h2>Edge Rules — Lockdown</h2>
+      <div class="card-emerald banner">
+        <div class="flex items-center gap-2 mb-3">${ICONS.shield}<span class="text-lg font-semibold">Non-Negotiables</span></div>
+        <ol>${RULES.map(r => `<li class="text-sm mb-2">${r}</li>`).join('')}</ol>
+      </div>
+    </div>
+  `;
+}
+
+// ──────────── Main render ────────────
+function render() {
+  const root = document.getElementById('root');
+  let body = '';
+  switch (state.tab) {
+    case 'dash': body = renderDashboard(); break;
+    case 'bias': body = renderBias(); break;
+    case 'play': body = renderPlaybook(); break;
+    case 'fib': body = renderFibs(); break;
+    case 'kz': body = renderKillzones(); break;
+    case 'zones': body = renderActiveZones(); break;
+    case 'score': body = renderEntryScore(); break;
+    case 'calc': body = renderRiskCalc(); break;
+    case 'news': body = renderNews(); break;
+    case 'journal': body = renderJournal(); break;
+    case 'stats': body = renderStats(); break;
+    case 'sheet': body = renderCheatSheet(); break;
+    case 'rules': body = renderRules(); break;
+  }
+  root.innerHTML = renderHeader() + '<div class="main"><div class="container">' + body + '</div></div>' +
+    '<footer>Educational tool. Not financial advice. Trade your plan, log every trade, respect your stops.</footer>';
+}
+
+// ──────────── Event handlers (global) ────────────
+window.setTab = function(t) { state.tab = t; render(); };
+window.setBias = function(pair, tf, val) {
+  if (!state.bias[pair]) state.bias[pair] = {};
+  state.bias[pair][tf] = val;
+  lsSet('sd_bias_' + todayKey(), state.bias);
+  render();
+};
+window.toggleScore = function(i) {
+  state.scoreChecked[i] = !state.scoreChecked[i];
+  render();
+};
+window.resetScore = function() { state.scoreChecked = {}; render(); };
+window.setAccount = function(v) { state.account = parseFloat(v) || 0; lsSet('sd_account', state.account); render(); };
+window.setRisk = function(v) { state.risk = parseFloat(v) || 0; lsSet('sd_risk', state.risk); render(); };
+window.setCalcPair = function(v) { state.calcPair = v; render(); };
+window.setCalcSL = function(v) { state.calcSL = parseFloat(v) || 0; render(); };
+window.setRR = function(field, v) { state['rr' + field] = v; render(); };
+
+window.toggleEventForm = function() { state.showEventForm = !state.showEventForm; render(); };
+window.saveEvent = function() {
+  const name = document.getElementById('ef_name').value.trim();
+  if (!name) return;
+  const ev = {
+    id: Date.now(),
+    folder: document.getElementById('ef_folder').value,
+    currency: document.getElementById('ef_currency').value,
+    direction: document.getElementById('ef_direction').value,
+    name: name,
+    theme: document.getElementById('ef_theme').value,
+    notes: document.getElementById('ef_notes').value,
+  };
+  state.fundamentals.unshift(ev);
+  lsSet('sd_fund_' + todayKey(), state.fundamentals);
+  state.showEventForm = false;
+  render();
+};
+window.updateEventDir = function(id, dir) {
+  const e = state.fundamentals.find(x => x.id === id);
+  if (e) { e.direction = dir; lsSet('sd_fund_' + todayKey(), state.fundamentals); render(); }
+};
+window.deleteEvent = function(id) {
+  state.fundamentals = state.fundamentals.filter(e => e.id !== id);
+  lsSet('sd_fund_' + todayKey(), state.fundamentals);
+  render();
+};
+
+window.toggleTradeForm = function() { state.showTradeForm = !state.showTradeForm; render(); };
+window.saveTrade = function() {
+  const tr = {
+    id: Date.now(),
+    timestamp: Date.now(),
+    pair: document.getElementById('tr_pair').value,
+    direction: document.getElementById('tr_direction').value,
+    setup: document.getElementById('tr_setup').value,
+    entry: parseFloat(document.getElementById('tr_entry').value) || 0,
+    sl: parseFloat(document.getElementById('tr_sl').value) || 0,
+    tp: parseFloat(document.getElementById('tr_tp').value) || 0,
+    result: document.getElementById('tr_result').value,
+    rResult: parseFloat(document.getElementById('tr_r').value) || 0,
+    notes: document.getElementById('tr_notes').value,
+    date: new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Manila', month: 'short', day: 'numeric' }),
+  };
+  state.trades.unshift(tr);
+  lsSet('sd_trades', state.trades);
+  state.showTradeForm = false;
+  render();
+};
+window.deleteTrade = function(id) {
+  state.trades = state.trades.filter(t => t.id !== id);
+  lsSet('sd_trades', state.trades);
+  render();
+};
+
+// Init
+loadState();
+render();
+setInterval(() => {
+  if (state.tab === 'dash' || state.tab === 'kz') render();
+}, 1000);
+</script>
+</body>
+</html>
