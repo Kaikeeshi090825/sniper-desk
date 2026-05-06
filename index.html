@@ -137,9 +137,12 @@ h2 { font-size: 1.25rem; font-weight: 600; }
 .bias-btn.active.bear { background: rgba(244,63,94,0.2); color: var(--rose-light); border-color: rgba(244,63,94,0.4); }
 .bias-btn.active.neutral { background: rgba(113,113,122,0.3); color: var(--text); border-color: var(--dim); }
 
-.score-row { width: 100%; display: flex; gap: 0.75rem; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: rgba(9,9,11,0.4); text-align: left; cursor: pointer; transition: all 0.15s; }
+.score-row { width: 100%; display: flex; gap: 0.75rem; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: rgba(9,9,11,0.4); text-align: left; cursor: pointer; transition: all 0.15s; color: var(--text); }
+.score-row:hover { border-color: var(--dim); background: rgba(39,39,42,0.6); }
+.score-row span { color: var(--text); }
 .score-row.checked { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.4); }
-.score-checkbox { width: 1.25rem; height: 1.25rem; border-radius: 0.25rem; border: 2px solid var(--dim); flex-shrink: 0; margin-top: 0.125rem; display: flex; align-items: center; justify-content: center; }
+.score-row.checked span { color: var(--emerald-light); }
+.score-checkbox { width: 1.25rem; height: 1.25rem; border-radius: 0.25rem; border: 2px solid var(--muted); flex-shrink: 0; margin-top: 0.125rem; display: flex; align-items: center; justify-content: center; }
 .score-row.checked .score-checkbox { background: var(--emerald); border-color: var(--emerald); }
 .score-checkbox svg { width: 1rem; height: 1rem; color: var(--bg); display: none; }
 .score-row.checked .score-checkbox svg { display: block; }
