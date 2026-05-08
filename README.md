@@ -5,7 +5,7 @@ ICT/SMC trading assistant for GBP/USD, XAU/USD, AUD/USD
 ICT/SMC trading assistant for GBP/USD, XAU/USD, and AUD/USD.
 Built for Philippine timezone traders.
 
-**🔗 Live app:** https://yourusername.github.io/sniper-desk/
+**🔗 Live app:** https://Kaikeeshi090825.github.io/sniper-desk/
 
 ## What it does
 
