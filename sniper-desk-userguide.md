@@ -30,7 +30,7 @@ A precision-built ICT/SMC trading assistant for Philippine timezone forex trader
 <a id="getting-started"></a>
 ## 1. Getting Started — First Launch
 
-`[IMAGE: Welcome / setup screen with greeting and registration form]`
+`<img width="1862" height="884" alt="image" src="https://github.com/user-attachments/assets/43402113-e146-4652-8fc6-0dda19d27901" />`
 
 When you open Sniper Desk for the first time, you'll see a setup screen.
 
