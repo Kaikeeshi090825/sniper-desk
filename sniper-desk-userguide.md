@@ -31,8 +31,6 @@ A precision-built ICT/SMC trading assistant for Philippine timezone forex trader
 ## 1. Getting Started — First Launch
 
 <img width="1862" height="884" alt="image" src="https://github.com/user-attachments/assets/43402113-e146-4652-8fc6-0dda19d27901" />
-<img width="1862" height="884" alt="image" src="https://github.com/user-attachments/assets/977ad60f-daea-4a2e-8260-2013c9e239ee" />
-
 
 When you open Sniper Desk for the first time, you'll see a setup screen.
 
@@ -54,14 +52,15 @@ When you open Sniper Desk for the first time, you'll see a setup screen.
 <a id="dashboard"></a>
 ## 2. Dashboard
 
-`[IMAGE: Full dashboard view showing greeting, session, composite verdict, 5-pair strip, KPI tiles]`
+<img width="1866" height="881" alt="image" src="https://github.com/user-attachments/assets/4ad7072b-6b48-44b5-986c-0112b140cd36" />
 
 The Dashboard is your situational awareness panel. Every time you open Sniper Desk, this is where you start.
 
 ### What you see, top to bottom:
 
 **Greeting + Session card**
-`[IMAGE: Greeting card with current session and 3 quick-action buttons]`
+<img width="1574" height="384" alt="image" src="https://github.com/user-attachments/assets/8e8e3008-94e1-42db-88eb-7dfcd2434a3b" />
+
 Time-of-day greeting + your trader name + the live PHT session (Sydney/Tokyo, London KZ, NY KZ, etc.) with a contextual message ("Sniper window. London-NY overlap. All pairs active.").
 
 **Quick action buttons**
@@ -70,7 +69,8 @@ Time-of-day greeting + your trader name + the live PHT session (Sydney/Tokyo, Lo
 - **Score Setup** → Entry Score
 
 **Tech vs Fund — Featured Pair**
-`[IMAGE: Composite verdict card with featured pair and 5-pair strip below]`
+<img width="1603" height="586" alt="image" src="https://github.com/user-attachments/assets/833204bd-48d2-48a7-9912-23b9c871e55c" />
+
 The most important card on the page. Pick a pair from the dropdown. The card shows:
 - **Tech direction** (from your Bias Board)
 - **Fund direction** (from your News tab)
@@ -80,7 +80,8 @@ The most important card on the page. Pick a pair from the dropdown. The card sho
 Below it, a 5-pair strip shows every pair's verdict at a glance. Click any pair to feature it.
 
 **KPI Tiles**
-`[IMAGE: 4 stat tiles — Account, Trades 7d, Win Rate, R Captured]`
+<img width="1594" height="797" alt="image" src="https://github.com/user-attachments/assets/3192a672-5ee9-45a8-9010-3a00ef0bbc21" />
+
 Account balance, last 7 days of trades, win rate, R captured.
 
 **Daily routine + No-trade conditions**
@@ -95,7 +96,7 @@ Two reference cards at the bottom — your pre-trade checklist and your stop sig
 <a id="bias-board"></a>
 ## 3. Bias Board
 
-`[IMAGE: Bias Board with 5 pair cards showing Daily/4H/1H buttons]`
+<img width="1081" height="880" alt="image" src="https://github.com/user-attachments/assets/5198839b-dcf5-4a6c-b294-f26f865f7684" />
 
 Where you mark your multi-timeframe bias for each of the 5 pairs. Saved per day (resets at midnight Manila time).
 
@@ -107,7 +108,7 @@ For each pair card:
 2. **4H** — Click Bull, Bear, or Neutral based on 4H structure (last BOS direction).
 3. **1H** — Click Bull, Bear, or Neutral based on 1H refinement.
 
-`[IMAGE: Single pair card with Bull selected on Daily, Bear on 4H, Tier showing C — NO TRADE]`
+<img width="1075" height="881" alt="image" src="https://github.com/user-attachments/assets/084920a1-6824-4960-a492-4836dbe5e7d7" />
 
 The card automatically calculates a **Tier**:
 
@@ -119,7 +120,7 @@ The card automatically calculates a **Tier**:
 
 ### Reset button:
 
-`[IMAGE: Reset button highlighted on a single pair card]`
+<img width="1085" height="882" alt="image" src="https://github.com/user-attachments/assets/fe2da639-9508-4e99-ac2b-cf6e7b61d9b9" />
 
 Each pair has a **Reset** button to clear all 3 timeframes at once.
 
@@ -131,15 +132,14 @@ Mark all 5 pairs before London opens (3:00 PM PHT). This sets your menu for the 
 <a id="playbook"></a>
 ## 4. Playbook
 
-`[IMAGE: Playbook with all 6 collapsible setup cards visible]`
+<img width="1093" height="882" alt="image" src="https://github.com/user-attachments/assets/be459925-331b-4a60-b789-b7f5daacfd7e" />
 
 Reference library of your 6 ICT/SMC setups, each as an expandable card.
 
 ### How to use it:
 
 Click any setup to expand it.
-
-`[IMAGE: Single expanded setup card showing Prep / Trigger / Entry & SL / TP columns]`
+<img width="1075" height="874" alt="image" src="https://github.com/user-attachments/assets/6ecf3595-bbe4-4c85-b223-d07a4fdeb09b" />
 
 Each setup contains:
 - **Prep (Bias First)** — what your Bias Board must show before you even consider this setup
@@ -158,7 +158,7 @@ Each setup contains:
 
 ### AMD Identification Guide
 
-`[IMAGE: AMD identification card at the bottom of the Playbook]`
+<img width="1064" height="519" alt="image" src="https://github.com/user-attachments/assets/fe9bed84-2cd3-40d1-90ef-d7ed02e964ed" />
 
 A reference card explaining how to spot the 3-phase smart-money cycle on the chart:
 - **Accumulation (A)** — tight Asian range
@@ -173,7 +173,7 @@ Read through the Playbook once a week. The setups don't change — but your disc
 <a id="ict-fibs"></a>
 ## 5. ICT Fibs
 
-`[IMAGE: ICT Fibs tab with both retracement and extension dropdowns visible]`
+<img width="1605" height="843" alt="image" src="https://github.com/user-attachments/assets/8de9cfd5-1e3c-4cff-960c-003f1ea0a18c" />
 
 Reference for ICT-specific Fibonacci levels with definitions for every coefficient.
 
@@ -181,7 +181,8 @@ Reference for ICT-specific Fibonacci levels with definitions for every coefficie
 
 **Click "Retracement Levels — definitions"** to expand the retracement coefficients:
 
-`[IMAGE: Expanded retracement dropdown showing levels 0, 0.236, 0.382, 0.5, 0.618, 0.705, 0.79, 1.0]`
+<img width="1074" height="794" alt="image" src="https://github.com/user-attachments/assets/62bb503a-e20c-45eb-9749-27989e9c99a4" />
+
 
 | Level | Name | Meaning |
 |---|---|---|
@@ -194,13 +195,13 @@ Reference for ICT-specific Fibonacci levels with definitions for every coefficie
 
 **Click "Extension Coefficients — definitions"** to expand the extensions:
 
-`[IMAGE: Expanded extension dropdown showing levels 0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0]`
+<img width="1106" height="674" alt="image" src="https://github.com/user-attachments/assets/52dab280-4c36-4ef6-be1b-f6833a472460" />
 
 These are your TP projections.
 
 ### TradingView setup:
 
-`[IMAGE: TradingView setup card showing copy-paste coefficient strings]`
+<img width="1601" height="313" alt="image" src="https://github.com/user-attachments/assets/51625cde-0c9d-4777-bc94-a80e70dac4ec" />
 
 Two pre-formatted strings ready to paste into TradingView's Fib tool settings:
 - Retracement: `0, 0.236, 0.382, 0.5, 0.618, 0.705, 0.79, 1`
@@ -214,7 +215,7 @@ The 0.705 ICT sweet spot is the single most useful number on this tab. Many ICT 
 <a id="pivots"></a>
 ## 6. Pivots
 
-`[IMAGE: Pivot Calculator with input form on top and pivot ladder below]`
+<img width="1208" height="881" alt="image" src="https://github.com/user-attachments/assets/ef6e6ddb-a758-47a6-9572-4367606dde94" />
 
 Calculates daily pivot levels using yesterday's H/L/C (and optional Open).
 
@@ -228,7 +229,7 @@ Calculates daily pivot levels using yesterday's H/L/C (and optional Open).
    - **Camarilla** — tight intraday levels, R3/S3 are key reversal zones
    - **Woodie** — weights close more heavily
 
-`[IMAGE: Method dropdown open showing all 4 options]`
+<img width="1210" height="882" alt="image" src="https://github.com/user-attachments/assets/2c9fed11-c56e-4e98-a0c9-9f5ac669be99" />
 
 **Step 2 — Enter values:**
 3. **Open** (optional) — today's opening price
@@ -236,17 +237,17 @@ Calculates daily pivot levels using yesterday's H/L/C (and optional Open).
 5. **Low** — yesterday's low
 6. **Close** — yesterday's close
 
-`[IMAGE: Filled input form with all 4 numeric values]`
+<img width="1206" height="767" alt="image" src="https://github.com/user-attachments/assets/ff6babf3-e063-4942-8443-9d7a9a8ac1cd" />
 
 **Step 3 — Read the ladder:**
 
-`[IMAGE: Pivot ladder showing R3, R2, R1, PP, S1, S2, S3 with values]`
+<img width="1202" height="480" alt="image" src="https://github.com/user-attachments/assets/210fc49f-4925-4ab2-9b67-652c3e869366" />
 
 The ladder shows resistance levels (green) above PP (orange) and support levels (red) below.
 
 **Step 4 — Click any level to auto-copy:**
 
-`[IMAGE: Pivot row highlighted after click with toast notification "PP = 1.27450 copied"]`
+<img width="1272" height="885" alt="image" src="https://github.com/user-attachments/assets/fb931512-ddb4-44f1-8789-8702de0a2d6b" />
 
 Click any row to copy that price to your clipboard. A toast confirms the copy. Paste it directly into TradingView, MT4, or your trade ticket.
 
@@ -266,7 +267,7 @@ Click any row to copy that price to your clipboard. A toast confirms the copy. P
 <a id="killzones"></a>
 ## 7. Killzones
 
-`[IMAGE: Killzones tab with all 7 zones, one showing LIVE indicator]`
+<img width="816" height="741" alt="image" src="https://github.com/user-attachments/assets/d19344ef-af93-4ff6-90d4-780524b8a670" />
 
 The 7 trading sessions of the day in Manila time, with a live "LIVE" badge on whichever is currently active.
 
@@ -274,7 +275,7 @@ The 7 trading sessions of the day in Manila time, with a live "LIVE" badge on wh
 
 Click any killzone to expand it.
 
-`[IMAGE: Single expanded killzone card showing Definition, ✓ DO, ✗ DON'T sections]`
+<img width="1861" height="886" alt="image" src="https://github.com/user-attachments/assets/3c772bae-1301-4901-b38f-4c0df0623550" />
 
 Each zone shows:
 - **Definition** — what's structurally happening in this session
@@ -301,7 +302,7 @@ Set phone alarms for **3:00 PM** (London open) and **8:30 PM** (NY open). These 
 <a id="active-zones"></a>
 ## 8. Active Zones
 
-`[IMAGE: Active Zones tab with Add Zone form open and 2-3 saved zones below]`
+<img width="1477" height="750" alt="image" src="https://github.com/user-attachments/assets/12fe3332-f80f-43ee-9853-b095467439b3" />
 
 Your sniper watchlist — pre-marked zones you're waiting to play.
 
@@ -311,7 +312,7 @@ Your sniper watchlist — pre-marked zones you're waiting to play.
 
 1. Click **+ Add Zone**
 
-`[IMAGE: Add Zone form expanded with all fields visible]`
+<img width="1451" height="659" alt="image" src="https://github.com/user-attachments/assets/2c5c746f-d1ce-4790-a102-e5a8c9fb3c3b" />
 
 2. Fill in:
    - **Pair** + **Direction** (Long/Short)
@@ -323,13 +324,13 @@ Your sniper watchlist — pre-marked zones you're waiting to play.
 
 **Filtering zones:**
 
-`[IMAGE: Filter pill row showing All, Active, Triggered, Hit TP, Stopped Out, Expired]`
+<img width="1421" height="734" alt="image" src="https://github.com/user-attachments/assets/8e993742-752b-4e0f-a876-9ef581dd5cc0" />
 
 Use the filter pills to view zones by status.
 
 **Updating zone status:**
 
-`[IMAGE: Single zone card with status update buttons highlighted]`
+<img width="1437" height="750" alt="image" src="https://github.com/user-attachments/assets/9c4c1a23-7b3d-49e5-905b-ff0793ce9894" />
 
 As price reaches your zones, click the buttons to update:
 - **→ Triggered** — price hit your entry
@@ -345,7 +346,7 @@ Zones auto-calculate R-multiples for each TP based on your entry and SL. Anythin
 <a id="entry-score"></a>
 ## 9. Entry Score
 
-`[IMAGE: Entry Score tab with 12 confluence rows, several checked, summary card at bottom]`
+<img width="1087" height="882" alt="image" src="https://github.com/user-attachments/assets/eb28d809-0755-4318-bcfe-65fa752f2371" />
 
 A 12-point confluence checklist that gates you into A+ / A / B / NO TRADE verdicts.
 
@@ -355,7 +356,7 @@ A 12-point confluence checklist that gates you into A+ / A / B / NO TRADE verdic
 2. **Tick** every box that is genuinely true for the setup in front of you.
 3. Watch the **Score / Grade / Verdict** card update at the bottom.
 
-`[IMAGE: Score summary card showing 11/12, Grade A+, Verdict TRADE — full size]`
+<img width="1105" height="885" alt="image" src="https://github.com/user-attachments/assets/9c801942-f2bc-4253-a27d-170534a7859b" />
 
 ### Grade thresholds:
 
@@ -368,7 +369,8 @@ A 12-point confluence checklist that gates you into A+ / A / B / NO TRADE verdic
 
 ### Reset All button:
 
-`[IMAGE: Reset All button at top-right of Entry Score tab]`
+<img width="1088" height="883" alt="image" src="https://github.com/user-attachments/assets/c00e1d28-95b8-4612-a34e-97f2a317e6ce" />
+<img width="1095" height="882" alt="image" src="https://github.com/user-attachments/assets/2c39c66b-9986-457a-ba00-9f5bfc7a70ce" />
 
 After taking the trade, click **Reset All** to clear the checklist for the next setup.
 
@@ -380,13 +382,13 @@ Be brutally honest with yourself. If a confluence isn't *genuinely* there, don't
 <a id="risk--rr"></a>
 ## 10. Risk & R:R
 
-`[IMAGE: Risk & R:R tab with Position Calculator on top and R:R Calculator below]`
+<img width="1074" height="851" alt="image" src="https://github.com/user-attachments/assets/b3a8e3a5-9cb8-45f9-af48-66ff72ce1f20" />
 
 Two calculators in one tab. Position size + R:R.
 
 ### Section 1: Position Size Calculator
 
-`[IMAGE: Position Calculator with Account, Risk %, Pair, SL Distance fields filled]`
+<img width="1096" height="432" alt="image" src="https://github.com/user-attachments/assets/5348495a-0b80-4ae0-a619-b444c3462569" />
 
 **How to use it:**
 1. **Account ($)** — your trading capital
@@ -401,7 +403,7 @@ The 3 result tiles show:
 
 ### Section 2: R:R Calculator
 
-`[IMAGE: R:R Calculator with Entry, SL, TP1, TP2, TP3 fields and weighted R result]`
+<img width="1616" height="598" alt="image" src="https://github.com/user-attachments/assets/9b5d1a27-9a2d-4b22-9951-b8425a138881" />
 
 **How to use it:**
 1. **Entry** — your planned entry price
@@ -415,7 +417,7 @@ Results show:
 
 ### Reset buttons:
 
-`[IMAGE: Reset buttons highlighted on both calculators]`
+<img width="1306" height="879" alt="image" src="https://github.com/user-attachments/assets/afbe04b1-3cac-4076-8d10-d4fc8374547d" />
 
 Each calculator has a **Reset** button to clear all fields. Each input also has an **× clear** button.
 
@@ -427,7 +429,7 @@ If your weighted R is below 2.0, the trade isn't worth taking. Walk away.
 <a id="news"></a>
 ## 11. News
 
-`[IMAGE: News tab with Iron Rule banner, calendar links, fundamental bias engine]`
+<img width="1319" height="880" alt="image" src="https://github.com/user-attachments/assets/47bb6775-91c8-4142-8627-cf099ccdbcf6" />
 
 Track today's economic events and let the engine compute your fundamental bias.
 
@@ -435,13 +437,13 @@ Track today's economic events and let the engine compute your fundamental bias.
 
 **Step 1 — Open a live calendar:**
 
-`[IMAGE: Live calendar links section with 4 cards (ForexFactory, Investing.com, FXStreet, MyFXBook)]`
+<img width="1287" height="229" alt="image" src="https://github.com/user-attachments/assets/319825c5-4d5a-49e8-b5fd-35725a9ecca7" />
 
 Click any of the 4 calendar cards to open the source in a new tab. Identify the day's red and orange folder events.
 
 **Step 2 — Log each major event:**
 
-`[IMAGE: Add Event form expanded showing Folder, Currency, Direction, Event, Theme, Notes fields]`
+<img width="1280" height="223" alt="image" src="https://github.com/user-attachments/assets/216c536b-df02-49c0-b2b4-b81476e59f14" />
 
 1. Click **+ Add Event**
 2. Fill in:
@@ -454,7 +456,7 @@ Click any of the 4 calendar cards to open the source in a new tab. Identify the 
 
 **Step 3 — Read the per-pair fundamental bias:**
 
-`[IMAGE: 5 per-pair fundamental bias cells showing STRONG LONG / LEAN SHORT / NEUTRAL etc.]`
+<img width="1286" height="388" alt="image" src="https://github.com/user-attachments/assets/15edc297-9745-41e6-8e64-78ff10bce93c" />
 
 The engine weights events (Red=3, Orange=1.5, Yellow=0.5) × direction (+1, -1, 0) and produces a per-pair verdict:
 - **STRONG LONG / LEAN LONG** (green)
@@ -465,7 +467,7 @@ This feeds directly into the Dashboard's composite verdict.
 
 ### Iron Rule banner:
 
-`[IMAGE: Red Iron Rule banner at top]`
+<img width="1266" height="101" alt="image" src="https://github.com/user-attachments/assets/f1e190aa-dfbd-4824-be35-dd8449128f80" />
 
 **No trades 30 minutes before/after red-folder news.** This is non-negotiable.
 
@@ -477,7 +479,7 @@ Log events the night before or the morning of. Don't wait until the news is rele
 <a id="journal"></a>
 ## 12. Journal
 
-`[IMAGE: Journal tab with Log Trade form open and 2-3 saved trades below]`
+<img width="1293" height="873" alt="image" src="https://github.com/user-attachments/assets/9b3d97a6-daac-44a5-b7ee-bd06e7a99211" />
 
 Log every trade — both winners and losers. This is where your edge is built.
 
@@ -487,7 +489,7 @@ Log every trade — both winners and losers. This is where your edge is built.
 
 1. Click **+ Log Trade**
 
-`[IMAGE: Log Trade form expanded with all 16 fields visible]`
+<img width="1281" height="442" alt="image" src="https://github.com/user-attachments/assets/4a29bae8-65a3-46af-9ded-7edfeb0de9b4" />
 
 2. Fill in (all fields recommended):
    - **Pair** + **Direction** + **Session** + **Setup**
@@ -502,13 +504,13 @@ Log every trade — both winners and losers. This is where your edge is built.
 
 **Reviewing trades:**
 
-`[IMAGE: List of saved trades showing pair, direction, setup, result, R, emotion]`
+<img width="1285" height="593" alt="image" src="https://github.com/user-attachments/assets/00f80dcf-3286-4bc7-91d4-3ac2cbfba68f" />
 
 Each trade card shows everything at a glance. Click the trash icon to delete.
 
 ### Export / Import:
 
-`[IMAGE: CSV / Import buttons highlighted at top]`
+<img width="1285" height="583" alt="image" src="https://github.com/user-attachments/assets/c0f830c0-0af6-4c62-87f4-13d8ea72df08" />
 
 - **Export CSV** — download all trades as CSV (Excel/Google Sheets compatible)
 - **Import** — upload a previously exported CSV to restore
@@ -521,7 +523,7 @@ Log the trade *the moment you exit*. Don't wait until end of day — your emotio
 <a id="stats"></a>
 ## 13. Stats
 
-`[IMAGE: Stats tab with KPI tiles, equity curve, pie chart, edge math, by-pair, by-session]`
+<img width="587" height="877" alt="image" src="https://github.com/user-attachments/assets/898c6f6f-3d5b-481b-88d4-648cae7335f9" />
 
 Performance dashboard built from your journaled trades.
 
@@ -529,15 +531,15 @@ Performance dashboard built from your journaled trades.
 
 **Top KPI tiles** — Total trades, Win Rate, Total R, Expectancy
 
-`[IMAGE: 4 KPI tiles at top]`
+<img width="1619" height="691" alt="image" src="https://github.com/user-attachments/assets/14c7c17d-e5e7-4f09-af19-57fb3e50f4c0" />
 
 **Equity Curve** — cumulative R over time
 
-`[IMAGE: SVG equity curve chart showing line + area fill]`
+<img width="1607" height="632" alt="image" src="https://github.com/user-attachments/assets/fa98433e-ac49-436e-bf4b-c1fec3d1f716" />
 
 **Win/Loss pie + Edge Math**
 
-`[IMAGE: Pie chart showing W/L/BE distribution beside Edge Math card]`
+<img width="1587" height="589" alt="image" src="https://github.com/user-attachments/assets/6f910b92-0787-4811-a02e-9d8128f8f1a8" />
 
 Edge Math shows:
 - Avg Win (positive R)
@@ -546,11 +548,11 @@ Edge Math shows:
 
 **By Pair** — performance per pair
 
-`[IMAGE: By-Pair grid showing each traded pair with R captured and WR%]`
+<img width="1579" height="558" alt="image" src="https://github.com/user-attachments/assets/4ee9e10a-432e-478c-937f-1e295d2f9436" />
 
 **By Session — R captured** — bar chart showing which sessions are profitable for you
 
-`[IMAGE: SVG bar chart with sessions on x-axis and R captured on y-axis]`
+<img width="1586" height="856" alt="image" src="https://github.com/user-attachments/assets/e4305638-5900-43ba-a89c-497246af2ce2" />
 
 ### Tip:
 After 30+ trades, look at "By Session" carefully. If one session is consistently negative, **stop trading it** until you can rebuild the edge.
@@ -560,7 +562,7 @@ After 30+ trades, look at "By Session" carefully. If one session is consistently
 <a id="cheat-sheet"></a>
 ## 14. Cheat Sheet
 
-`[IMAGE: Cheat Sheet tab in white printable view, showing all 10 sections]`
+<img width="825" height="883" alt="image" src="https://github.com/user-attachments/assets/a1d7edeb-b6a6-4077-ae16-b8917f9a1230" />
 
 Auto-summary daily plan. Pulls live data from Bias Board, News, Active Zones, Pivots, Calc, and Score into one printable page.
 
@@ -573,11 +575,12 @@ Auto-summary daily plan. Pulls live data from Bias Board, News, Active Zones, Pi
    - **End-of-Day Reflection** — write at session close
 4. Both auto-save per day.
 
-`[IMAGE: Editable plan textarea with example plan written in it]`
+<img width="1278" height="887" alt="image" src="https://github.com/user-attachments/assets/3c51a5dd-7f68-4d6f-b12a-4f304da55b59" />
+<img width="1287" height="886" alt="image" src="https://github.com/user-attachments/assets/95a46a34-8dee-4d9e-892c-27ee7d3c2c28" />
 
 ### Print or save as PDF:
 
-`[IMAGE: Print / PDF button highlighted at top-right]`
+<img width="1311" height="886" alt="image" src="https://github.com/user-attachments/assets/298c793b-66b0-40fe-b75d-8718793a7edf" />
 
 Click **Print / PDF** at the top. Your browser's print dialog opens — choose:
 - **Print** to physical paper
@@ -606,11 +609,11 @@ Print this every morning. Tape it next to your monitor. Glance at it when tempta
 <a id="settings--backup"></a>
 ## 15. Settings & Backup
 
-`[IMAGE: Settings tab showing Profile, Appearance, Security, Backup, Danger Zone sections]`
+<img width="1324" height="635" alt="image" src="https://github.com/user-attachments/assets/2a630055-4c2c-4275-b91b-e5dd5c01d961" />
 
 ### Profile
 
-`[IMAGE: Profile section with Trader Name and Email fields]`
+<img width="1274" height="666" alt="image" src="https://github.com/user-attachments/assets/70b4081c-3186-41db-9026-c96a11823cf6" />
 
 Edit your trader name (shown on dashboard greeting) and email (used for password recovery).
 
@@ -620,14 +623,14 @@ Toggle between **Dark** and **Light** themes.
 
 ### Security
 
-`[IMAGE: Security section with Lock Now and Reset Password buttons]`
+<img width="1618" height="172" alt="image" src="https://github.com/user-attachments/assets/0f8f3990-61ee-4a78-a6ad-dd381ebc5ae0" />
 
 - **Lock Now** — re-locks the app immediately
 - **Reset Password** — removes the current password (data preserved); you'll be asked to set a new one
 
 ### Backup & Restore
 
-`[IMAGE: Backup section with Export Full Backup and Import Backup buttons]`
+<img width="1617" height="203" alt="image" src="https://github.com/user-attachments/assets/cb180fe4-c130-4539-937f-10b61e0b7334" />
 
 - **Export Full Backup** — downloads a JSON file with everything (trades, zones, bias, fundamentals, cheat sheet, settings, score, pivot, calc)
 - **Import Backup** — upload a previously exported JSON to restore
@@ -642,7 +645,7 @@ For round-tripping trade data with Excel or Google Sheets.
 
 ### Danger Zone
 
-`[IMAGE: Red Danger Zone card with three Clear buttons]`
+<img width="1601" height="188" alt="image" src="https://github.com/user-attachments/assets/c2cd94b9-f953-48bf-93ad-5cae68b2efc9" />
 
 - **Clear All Trades** — deletes journal only
 - **Clear All Zones** — deletes Active Zones only
@@ -655,7 +658,7 @@ All three require modal confirmation. None can be undone.
 <a id="recommended-daily-workflow"></a>
 ## 16. Recommended Daily Workflow
 
-`[IMAGE: Optional: timeline graphic showing the workflow across PHT hours]`
+---
 
 ### Morning (anytime before 3:00 PM PHT):
 
