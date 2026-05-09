@@ -261,7 +261,7 @@ function load(){
   st.user=lG('sd_user','');st.email=lG('sd_email','');st.optIn=lG('sd_optin',false);
   st.trades=lG('sd_trades',[]);st.account=lG('sd_account',1000);st.risk=lG('sd_risk',1);
   st.bias=lG('sd_bias_'+tk(),{});st.fund=lG('sd_fund_'+tk(),[]);st.zones=lG('sd_zones',[]);
-  st.score=lG('sd_score_'+tk(),{});
+  st.score=lG('sd_score_'+tk(),{});st.scorePair=lG('sd_scorepair','GBP/USD');
   const c=lG('sd_calc',{});st.cPair=c.cPair||'GBP/USD';st.cSL=c.cSL!=null?c.cSL:20;
   st.rE=c.rE||'';st.rS=c.rS||'';st.r1=c.r1||'';st.r2=c.r2||'';st.r3=c.r3||'';
   const p=lG('sd_pivot',{});st.pPair=p.pPair||'GBP/USD';st.pM=p.pM||'standard';
