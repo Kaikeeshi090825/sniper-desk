@@ -26,7 +26,7 @@
 Sniper Desk is a self-contained, password-protected trading desk that turns scattered prep work — bias-marking, fib levels, pivot calcs, news tracking, position sizing, journaling — into one focused workflow built around the **ICT/SMC top-down methodology**. It's tuned specifically for traders working in **Manila time (PHT)** who hunt setups across the London and New York killzones.
 
 It runs entirely in your browser. There is no server, no account, no telemetry, no analytics. Open the HTML file, set a password, start trading sharper.
-Click Here! (-https://kaikeeshi090825.github.io/sniper-desk/)
+Click Here to TEST! (https://kaikeeshi090825.github.io/sniper-desk/)
 
 > ⚠️ **Educational tool. Not financial advice.** Trade your plan, log every trade, respect your stops.
 
