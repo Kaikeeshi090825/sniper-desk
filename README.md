@@ -25,8 +25,8 @@
 
 Sniper Desk is a self-contained, password-protected trading desk that turns scattered prep work — bias-marking, fib levels, pivot calcs, news tracking, position sizing, journaling — into one focused workflow built around the **ICT/SMC top-down methodology**. It's tuned specifically for traders working in **Manila time (PHT)** who hunt setups across the London and New York killzones.
 
-It runs entirely in your browser. There is no server, no account, no telemetry, no analytics. Open the HTML file, set a password, start trading sharper.
-Click Here to TEST! (https://kaikeeshi090825.github.io/sniper-desk/)
+It runs entirely in your browser. There is no server, no account, no telemetry, no analytics. Open the HTML file, set a password, and start trading sharper.
+Click here now to TEST! (https://kaikeeshi090825.github.io/sniper-desk/)
 
 > ⚠️ **Educational tool. Not financial advice.** Trade your plan, log every trade, respect your stops.
 
@@ -46,7 +46,7 @@ Click Here to TEST! (https://kaikeeshi090825.github.io/sniper-desk/)
 - **ICT Fibs** — Retracement (0 → 1.0) and Extension (0 → 4.0) coefficients with full definitions for every level. Copy-paste strings for TradingView.
 - **Active Zones Watchlist** — Build a sniper watchlist with Entry / SL / TP1-3, auto-calculated R-multiples, and 5 status states (Active, Triggered, Hit TP, Stopped Out, Expired).
 - **Entry Confluence Scorer** — 12-point checklist gating you into A+ (11/12), A (9/12), B, or NO TRADE verdicts. Saved per day.
-- **Position Size Calculator** — Account × Risk % × SL distance → exact lot size (standard / mini / micro). Pip values pre-configured per pair including JPY and XAU.
+- **Position Size Calculator** — Account × Risk % × SL distance → exact lot size (standard/mini/micro). Pip values pre-configured per pair, including JPY and XAU.
 - **R:R Calculator** — Entry/SL/TP1-3 → individual R-multiples + weighted R (50/30/20 partial-exit model).
 
 ### 📅 Session Awareness
