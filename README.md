@@ -15,7 +15,7 @@
 [![Pairs](https://img.shields.io/badge/pairs-5-0ea5e9?style=flat-square)](#)
 [![Timezone](https://img.shields.io/badge/timezone-PHT-d946ef?style=flat-square)](#)
 
-[**Live Demo**](#) · [**Features**](#-features) · [**Quick Start**](#-quick-start) · [**Self-Host**](#-self-host) · [**Roadmap**](#-roadmap)
+[**Live Demo**](#-https://kaikeeshi090825.github.io/sniper-desk/) · [**Features**](#-features) · [**Quick Start**](#-quick-start) · [**Self-Host**](#-self-host) · [**Roadmap**](#-roadmap)
 
 </div>
 
